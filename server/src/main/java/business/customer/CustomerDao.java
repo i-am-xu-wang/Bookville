@@ -1,7 +1,7 @@
 package business.customer;
 
 import java.sql.Connection;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public interface CustomerDao {
@@ -13,7 +13,7 @@ public interface CustomerDao {
         String phone,
         String email,
         String ccNumber,
-        Date ccExpDate);
+        Calendar ccExpDate);
 
     List<Customer> findAll();
 

@@ -187,7 +187,6 @@ import java.util.List;
                     "Unknown error occurred");
             }
 
-            // NOTE: MORE CODE PROVIDED NEXT PROJECT
 
         }
         catch (ApiException e) {

@@ -1,6 +1,6 @@
 package business.customer;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Customer {
 
@@ -10,7 +10,7 @@ public class Customer {
     private String phone;
     private String email;
     private String ccNumber;
-    private Date ccExpDate;
+    private Calendar ccExpDate;
     private String lastFourCCNumber;
 
 
@@ -21,7 +21,7 @@ public class Customer {
         String phone,
         String email,
         String ccNumber,
-        Date ccExpDate) {
+        Calendar ccExpDate) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
@@ -64,7 +64,7 @@ public class Customer {
     }
 
 
-    public Date getCcExpDate() {
+    public Calendar getCcExpDate() {
         return ccExpDate;
     }
 

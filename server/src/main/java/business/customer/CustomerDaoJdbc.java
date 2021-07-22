@@ -5,7 +5,7 @@ import business.BookstoreDbException.BookstoreUpdateDbException;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import static business.JdbcUtils.getConnection;
@@ -29,7 +29,7 @@ public class CustomerDaoJdbc implements CustomerDao {
         String phone,
         String email,
         String ccNumber,
-        Date ccExpDate) {
+        Calendar ccExpDate) {
         try (PreparedStatement statement = connection
             .prepareStatement(CREATE_CUSTOMER_SQL,
                 Statement.RETURN_GENERATED_KEYS)) {
@@ -38,7 +38,7 @@ public class CustomerDaoJdbc implements CustomerDao {
             statement.setString(3, phone);
             statement.setString(4, email);
             statement.setString(5, ccNumber);
-            statement.setDate(6, new java.sql.Date(ccExpDate.getTime()));
+            statement.setDate(6, new java.sql.Date(ccExpDate.getTimeInMillis()));
             int affected = statement.executeUpdate();
             if (affected != 1) {
                 throw new BookstoreUpdateDbException(
@@ -114,7 +114,9 @@ public class CustomerDaoJdbc implements CustomerDao {
         String email = resultSet.getString("email");
         String ccNumber = resultSet.getString("cc_number");
         Date ccExpDate = resultSet.getDate("cc_exp_date");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(ccExpDate);
         return new Customer(customerId, name, address, phone, email, ccNumber,
-            ccExpDate);
+            cal);
     }
 }

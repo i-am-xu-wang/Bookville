@@ -15,7 +15,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.YearMonth;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -65,7 +64,7 @@ public class DefaultOrderService implements OrderService {
         validateCustomer(customerForm);
         validateCart(cart);
         try (Connection connection = JdbcUtils.getConnection()) {
-            Date date = getDate(customerForm.getCcExpiryMonth(),
+            Calendar date = getDate(customerForm.getCcExpiryMonth(),
                 customerForm.getCcExpiryYear());
             return performPlaceOrderTransaction(customerForm.getName(),
                 customerForm.getAddress(), customerForm.getPhone(),
@@ -80,10 +79,10 @@ public class DefaultOrderService implements OrderService {
     }
 
 
-    private Date getDate(String monthString, String yearString) {
-        Date ccExpDate =new Date();
-        ccExpDate.setMonth((Integer.parseInt(monthString)));
-        ccExpDate.setYear((Integer.parseInt(yearString)));
+    private Calendar getDate(String monthString, String yearString) {
+        Calendar ccExpDate = Calendar.getInstance();
+        ccExpDate.set(Calendar.MONTH, Integer.parseInt(monthString));
+        ccExpDate.set(Calendar.YEAR,Integer.parseInt(yearString));
     return ccExpDate;
     }
 
@@ -94,7 +93,7 @@ public class DefaultOrderService implements OrderService {
         String phone,
         String email,
         String ccNumber,
-        Date date,
+        Calendar date,
         ShoppingCart cart,
         Connection connection) {
         try {
