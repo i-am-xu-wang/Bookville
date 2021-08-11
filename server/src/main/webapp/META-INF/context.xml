@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource name="jdbc/XuBookstore"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="4"
+              maxIdle="1"
+              maxWaitMillis="10000"
+              username="XW"
+              password="2021IFeelLucky"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              removeAbandonedOnBorrow="true"
+              removeAbandonedOnMaintenance="true"
+              removeAbandonedTimeout="60"
+              logAbandoned="true"
+              minEvictableIdleTimeMillis="300000"
+              timeBetweenEvictionRunsMillis="300000"
+              url="jdbc:mysql://143.244.150.19:3306/XuBookstore"/>
+</Context>
